@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-deployment
+spec:
+  replicas: 2  # Number of pods to run
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: us-central1-docker.pkg.dev/atomax-production/atomstate/hello-world:latest  # Correct Artifact Registry image path
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-service
+spec:
+  selector:
+    app: hello-world
+  ports:
+  - protocol: TCP
+    port: 80  # External port for LoadBalancer
+    targetPort: 8080  # Port the container listens on
+  type: LoadBalancer  # Expose service externally via LoadBalancer
