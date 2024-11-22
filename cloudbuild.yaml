@@ -1,7 +1,7 @@
 steps:
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/atomax-production/atomstate_test/hello-world:latest', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/atomax-production/atomstate/hello-world:latest', '.']
 
   
   # Push the Docker image to Artifact Registry
