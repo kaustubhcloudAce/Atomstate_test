@@ -6,7 +6,7 @@ steps:
   
   # Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/atomax-production/atomstate_test/hello-world:latest']
+    args: ['push', 'us-central1-docker.pkg.dev/atomax-production/atomstate/hello-world:latest']
 
   
   # Deploy to GKE using kubectl
