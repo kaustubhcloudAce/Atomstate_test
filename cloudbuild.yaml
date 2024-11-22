@@ -2,18 +2,12 @@ steps:
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/atomax-production/Atomstate_test/hello-world:latest', '.']
-logsBucket: 'gs://test-logging-atomstate'
-serviceAccount: 'projects/atomax-production/serviceAccounts/836823160376-compute@developer.gserviceaccount.com'
-options: 
-    logging: GCS_ONLY
+
   
   # Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/atomax-production/Atomstate_test/hello-world:latest']
-logsBucket: 'gs://test-logging-atomstate'
-serviceAccount: 'projects/atomax-production/serviceAccounts/836823160376-compute@developer.gserviceaccount.com'
-options: 
-    logging: GCS_ONLY
+
   
   # Deploy to GKE using kubectl
   - name: 'gcr.io/cloud-builders/kubectl'
